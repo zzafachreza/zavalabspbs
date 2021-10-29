@@ -22,7 +22,7 @@ export default function Brand({navigation, route}) {
 
   useEffect(() => {
     axios
-      .post('https://zavalabs.com/sigadisbekasi/api/brand.php', {
+      .post('https://zavalabs.com/pbs/api/brand.php', {
         kategori: item.nama,
       })
       .then(res => {

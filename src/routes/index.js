@@ -25,6 +25,7 @@ import {
   ListData,
   Barang,
   Cart,
+  Input,
   Checkout,
   Bayar,
   Pemakaian,
@@ -54,7 +55,7 @@ const MainApp = () => {
   return (
     <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="History" component={ListData} />
+      {/* <Tab.Screen name="History" component={ListData} /> */}
       {/* <Tab.Screen name="ListRedeem" component={ListRedeem} />
       <Tab.Screen name="Cart" component={Cart} />  */}
       {/* <Tab.Screen name="Notifikasi" component={Notifikasi} /> */}
@@ -76,6 +77,14 @@ export default function Router() {
       <Stack.Screen
         name="GetStarted"
         component={GetStarted}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="Input"
+        component={Input}
         options={{
           headerShown: false,
         }}

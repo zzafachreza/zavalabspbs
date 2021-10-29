@@ -36,22 +36,17 @@ export default function Pemakaian({navigation, route}) {
   }, [isFocused]);
 
   const getData = () => {
-    axios
-      .post('https://zavalabs.com/sigadisbekasi/api/pemakaian.php')
-      .then(res => {
-        console.log('detail transaksi', res.data);
-        setData(res.data);
-      });
+    axios.post('https://zavalabs.com/pbs/api/pemakaian.php').then(res => {
+      console.log('detail transaksi', res.data);
+      setData(res.data);
+    });
   };
 
   const hanldeHapus = id => {
     axios
-      .post(
-        'https://zavalabs.com/sigadisbekasi/api/barang_pemakaian_hapus.php',
-        {
-          id: id,
-        },
-      )
+      .post('https://zavalabs.com/pbs/api/barang_pemakaian_hapus.php', {
+        id: id,
+      })
       .then(res => {
         console.log('detail transaksi', res.data);
         getData();

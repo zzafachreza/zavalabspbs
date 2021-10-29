@@ -34,7 +34,7 @@ export default function ListData({navigation}) {
       // console.log(res);
 
       axios
-        .post('https://zavalabs.com/sigadisbekasi/api/transaksi.php', {
+        .post('https://zavalabs.com/pbs/api/transaksi.php', {
           id_member: res.id,
         })
         .then(res => {
@@ -51,7 +51,7 @@ export default function ListData({navigation}) {
         // console.log(res);
 
         axios
-          .post('https://zavalabs.com/sigadisbekasi/api/transaksi.php', {
+          .post('https://zavalabs.com/pbs/api/transaksi.php', {
             id_member: res.id,
           })
           .then(res => {
@@ -162,7 +162,7 @@ export default function ListData({navigation}) {
                     onPress={() => {
                       axios
                         .post(
-                          'https://zavalabs.com/sigadisbekasi/api/transaksi_hapus.php',
+                          'https://zavalabs.com/pbs/api/transaksi_hapus.php',
                           {
                             id_member: item.id_member,
                             kode: item.kode,
@@ -171,7 +171,7 @@ export default function ListData({navigation}) {
                         .then(res => {
                           axios
                             .post(
-                              'https://zavalabs.com/sigadisbekasi/api/transaksi.php',
+                              'https://zavalabs.com/pbs/api/transaksi.php',
                               {
                                 id_member: item.id_member,
                               },

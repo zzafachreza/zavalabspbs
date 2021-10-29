@@ -51,7 +51,7 @@ export default function Redeem({navigation, route}) {
     };
     console.log('kirim tok server', kirim);
     axios
-      .post('https://zavalabs.com/sigadisbekasi/api/redeem_add.php', kirim)
+      .post('https://zavalabs.com/pbs/api/redeem_add.php', kirim)
       .then(res => {
         console.log(res);
         setTimeout(() => {

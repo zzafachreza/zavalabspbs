@@ -35,7 +35,7 @@ export default function Checkout({navigation, route}) {
     console.log('kirim ke server', item);
     setTimeout(() => {
       axios
-        .post('https://zavalabs.com/sigadisbekasi/api/transaksi_add.php', item)
+        .post('https://zavalabs.com/pbs/api/transaksi_add.php', item)
         .then(res => {
           console.log(res);
           Linking.openURL(

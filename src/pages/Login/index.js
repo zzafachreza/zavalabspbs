@@ -55,33 +55,28 @@ export default function Login({navigation}) {
       setLoading(true);
       console.log(data);
       setTimeout(() => {
-        axios
-          .post('https://zavalabs.com/sigadisbekasi/api/login.php', data)
-          .then(res => {
-            console.log(res.data);
-            setLoading(false);
-            if (res.data.kode == 50) {
-              showMessage({
-                type: 'danger',
-                message: res.data.msg,
+        axios.post('https://zavalabs.com/pbs/api/login.php', data).then(res => {
+          console.log(res.data);
+          setLoading(false);
+          if (res.data.kode == 50) {
+            showMessage({
+              type: 'danger',
+              message: res.data.msg,
+            });
+          } else {
+            storeData('user', res.data);
+            axios
+              .post('https://zavalabs.com/pbs/api/update_token.php', {
+                id_member: res.data.id,
+                token: token,
+              })
+              .then(res => {
+                console.log('update token', res);
               });
-            } else {
-              storeData('user', res.data);
-              axios
-                .post(
-                  'https://zavalabs.com/sigadisbekasi/api/update_token.php',
-                  {
-                    id_member: res.data.id,
-                    token: token,
-                  },
-                )
-                .then(res => {
-                  console.log('update token', res);
-                });
 
-              navigation.replace('MainApp');
-            }
-          });
+            navigation.replace('MainApp');
+          }
+        });
       }, 1200);
     }
   };
@@ -115,7 +110,7 @@ export default function Login({navigation}) {
             source={require('../../assets/logo.png')}
             style={{
               resizeMode: 'contain',
-              aspectRatio: 0.1,
+              aspectRatio: 2,
             }}
           />
         </View>
@@ -133,7 +128,7 @@ export default function Login({navigation}) {
 
           <MyGap jarak={20} />
           <MyInput
-            label="NPM (Mahasiswa) / NIP (Dosen)"
+            label="Kode Cabang"
             iconname="card"
             value={data.nama_lengkap}
             onChangeText={value =>

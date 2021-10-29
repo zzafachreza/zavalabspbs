@@ -36,7 +36,7 @@ export default function Search2({navigation, route}) {
 
   useEffect(() => {
     axios
-      .post('https://zavalabs.com/sigadisbekasi/api/barang_cari.php', {
+      .post('https://zavalabs.com/pbs/api/barang_cari.php', {
         cari: item.nama,
       })
       .then(res => {

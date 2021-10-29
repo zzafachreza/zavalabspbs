@@ -25,7 +25,7 @@ export default function Input({route}) {
     });
   });
 
-  const myUrl = `https://zavalabs.com/pbs/api/data.php?id_cabang=${user.id_cabang}&page=${route.params.halaman}`;
+  const myUrl = `https://zavalabs.com/pbs/api/input.php?id_cabang=${user.id_cabang}`;
 
   return (
     <SafeAreaView

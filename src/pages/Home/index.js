@@ -45,7 +45,7 @@ export default function Home({navigation}) {
       // alert('email' + res.email + ' dan password ' + res.password);
 
       axios
-        .post('https://zavalabs.com/sigadisbekasi/api/point.php', {
+        .post('https://zavalabs.com/pbs/api/point.php', {
           id_member: res.id,
         })
         .then(respoint => {
@@ -54,7 +54,7 @@ export default function Home({navigation}) {
         });
 
       axios
-        .post('https://zavalabs.com/sigadisbekasi/api/get_member.php', {
+        .post('https://zavalabs.com/pbs/api/get_member.php', {
           email: res.email,
           password: res.password,
         })
@@ -79,7 +79,7 @@ export default function Home({navigation}) {
       setUser(res);
 
       axios
-        .post('https://zavalabs.com/sigadisbekasi/api/point.php', {
+        .post('https://zavalabs.com/pbs/api/point.php', {
           id_member: res.id,
         })
         .then(respoint => {
@@ -94,7 +94,7 @@ export default function Home({navigation}) {
     });
 
     axios
-      .post('https://zavalabs.com/sigadisbekasi/api/update_token.php', {
+      .post('https://zavalabs.com/pbs/api/update_token.php', {
         id_member: user.id,
         token: token,
       })
@@ -127,7 +127,7 @@ export default function Home({navigation}) {
           backgroundColor: colors.white,
           padding: 5,
           borderRadius: 10,
-          width: windowWidth / 4.5,
+          width: windowWidth / 2.2,
           height: windowHeight / 8.5,
           elevation: 5,
         }}>
@@ -135,7 +135,7 @@ export default function Home({navigation}) {
           <Icon
             type="ionicon"
             name={icon}
-            color={colors.primary}
+            color={colors.secondary}
             size={windowWidth / 10}
           />
         </View>
@@ -143,7 +143,7 @@ export default function Home({navigation}) {
           <Text
             style={{
               fontFamily: fonts.secondary[600],
-              color: colors.secondary,
+              color: colors.primary,
               fontSize: windowWidth / 40,
               textAlign: 'center',
               // marginHorizontal: 10,
@@ -153,7 +153,7 @@ export default function Home({navigation}) {
           <Text
             style={{
               fontFamily: fonts.secondary[600],
-              color: colors.secondary,
+              color: colors.primary,
               fontSize: windowWidth / 40,
               textAlign: 'center',
               // marginHorizontal: 10,
@@ -198,7 +198,7 @@ export default function Home({navigation}) {
                 color: colors.black,
                 fontFamily: fonts.secondary[400],
               }}>
-              Selamat datang,
+              {user.kode_cabang}
             </Text>
             <Text
               style={{
@@ -206,18 +206,27 @@ export default function Home({navigation}) {
                 color: colors.black,
                 fontFamily: fonts.secondary[600],
               }}>
-              {user.nama_lengkap}
+              {user.nama_cabang}
+            </Text>
+            <Text
+              style={{
+                fontSize: windowWidth / 25,
+                color: colors.primary,
+                fontFamily: fonts.secondary[600],
+              }}>
+              {user.area}
             </Text>
           </View>
           <View
             style={{
               flexDirection: 'row',
               justifyContent: 'flex-end',
+              alignItems: 'center',
               flex: 1,
             }}>
             <Image
               source={require('../../assets/logo.png')}
-              style={{width: 100, height: 50, resizeMode: 'stretch'}}
+              style={{width: 120, height: 40, resizeMode: 'stretch'}}
             />
           </View>
         </View>
@@ -238,22 +247,20 @@ export default function Home({navigation}) {
               marginTop: 15,
             }}>
             <DataKategori
-              onPress={() => navigation.navigate('Account')}
-              icon="person-outline"
-              nama="USER"
-              nama2="ACCOUNT"
+              onPress={() => navigation.navigate('Input')}
+              icon="grid"
+              nama="INPUT"
+              nama2="PROYEKSI"
             />
             <DataKategori
-              onPress={() => navigation.navigate('DataRuas')}
+              onPress={() =>
+                navigation.navigate('Laporan', {
+                  halaman: 'pendanaan',
+                })
+              }
               icon="analytics"
-              nama="PROFILE"
-              nama2="LAB"
-            />
-            <DataKategori
-              onPress={() => navigation.navigate('DataAduan')}
-              icon="finger-print-outline"
-              nama="ABSEN"
-              nama2="ONLINE"
+              nama="PERTUMBUHAN"
+              nama2="PENDANAAN"
             />
           </View>
           {/*  */}
@@ -264,22 +271,24 @@ export default function Home({navigation}) {
               marginTop: 15,
             }}>
             <DataKategori
-              onPress={() => navigation.navigate('DataInspeksi')}
-              icon="search-outline"
-              nama="FITUR"
-              nama2="PILIHAN"
+              onPress={() =>
+                navigation.navigate('Laporan', {
+                  halaman: 'pencairan',
+                })
+              }
+              icon="server"
+              nama="PENCAIRAN"
+              nama2="PEMBIAYAAN"
             />
             <DataKategori
-              onPress={() => navigation.navigate('DataTindak')}
-              icon="flag-outline"
-              nama="FITUR"
-              nama2="PILIHAN"
-            />
-            <DataKategori
-              onPress={() => navigation.navigate('DataVerifikasi')}
-              icon="shield-checkmark-outline"
-              nama="FITUR"
-              nama2="PILIHAN"
+              onPress={() =>
+                navigation.navigate('Laporan', {
+                  halaman: 'npf',
+                })
+              }
+              icon="flag"
+              nama="POSISI"
+              nama2="NPF"
             />
           </View>
           <View
@@ -289,22 +298,24 @@ export default function Home({navigation}) {
               marginTop: 15,
             }}>
             <DataKategori
-              onPress={() => navigation.navigate('DataInspeksi')}
-              icon="grid-outline"
-              nama="FITUR"
-              nama2="PILIHAN"
+              onPress={() =>
+                navigation.navigate('Laporan', {
+                  halaman: 'kol2',
+                })
+              }
+              icon="bar-chart"
+              nama="POSISI"
+              nama2="KOL 2"
             />
             <DataKategori
-              onPress={() => navigation.navigate('DataTindak')}
-              icon="school-outline"
-              nama="FITUR"
-              nama2="PILIHAN"
-            />
-            <DataKategori
-              onPress={() => navigation.navigate('DataVerifikasi')}
-              icon="qr-code-outline"
-              nama="FITUR"
-              nama2="PILIHAN"
+              onPress={() =>
+                navigation.navigate('Laporan', {
+                  halaman: 'produk',
+                })
+              }
+              icon="cube"
+              nama="MENU"
+              nama2="PRODUK"
             />
           </View>
           {/*  */}

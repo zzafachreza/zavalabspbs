@@ -32,8 +32,11 @@ import Pilihan from './Pilihan';
 import Masuk from './Masuk';
 import Keluar from './Keluar';
 
+import Input from './Input';
+
 export {
   Splash,
+  Input,
   Pilihan,
   Wa,
   Masuk,

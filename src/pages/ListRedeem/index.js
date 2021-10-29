@@ -34,7 +34,7 @@ export default function ListRedeem({navigation}) {
       // console.log(res);
 
       axios
-        .post('https://zavalabs.com/sigadisbekasi/api/redeem.php', {
+        .post('https://zavalabs.com/pbs/api/redeem.php', {
           id_member: res.id,
         })
         .then(res => {
@@ -51,7 +51,7 @@ export default function ListRedeem({navigation}) {
         // console.log(res);
 
         axios
-          .post('https://zavalabs.com/sigadisbekasi/api/redeem.php', {
+          .post('https://zavalabs.com/pbs/api/redeem.php', {
             id_member: res.id,
           })
           .then(res => {
@@ -163,21 +163,15 @@ export default function ListRedeem({navigation}) {
                   <TouchableOpacity
                     onPress={() => {
                       axios
-                        .post(
-                          'https://zavalabs.com/sigadisbekasi/api/redeem_hapus.php',
-                          {
-                            id_member: item.id_member,
-                            id: item.id,
-                          },
-                        )
+                        .post('https://zavalabs.com/pbs/api/redeem_hapus.php', {
+                          id_member: item.id_member,
+                          id: item.id,
+                        })
                         .then(res => {
                           axios
-                            .post(
-                              'https://zavalabs.com/sigadisbekasi/api/redeem.php',
-                              {
-                                id_member: item.id_member,
-                              },
-                            )
+                            .post('https://zavalabs.com/pbs/api/redeem.php', {
+                              id_member: item.id_member,
+                            })
                             .then(res => {
                               console.log(res.data);
                               setData(res.data);

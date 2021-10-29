@@ -18,7 +18,7 @@ import 'intl/locale-data/jsonp/en';
 
 export default function Hadiah() {
   useEffect(() => {
-    axios.get('https://zavalabs.com/sigadisbekasi/api/hadiah.php').then(res => {
+    axios.get('https://zavalabs.com/pbs/api/hadiah.php').then(res => {
       console.log(res.data);
       setData(res.data);
       // setData(res.data.data);

@@ -39,19 +39,17 @@ export default function Login({navigation}) {
     setLoading(true);
     console.log(data);
     setTimeout(() => {
-      axios
-        .post('https://zavalabs.com/sigadisbekasi/api/akses.php', data)
-        .then(res => {
-          if (res.data == 'success') {
-            navigation.replace('Pemakaian');
-          } else {
-            showMessage({
-              message: 'Maaf Kode Akses Salah !',
-              type: 'danger',
-            });
-          }
-          setLoading(false);
-        });
+      axios.post('https://zavalabs.com/pbs/api/akses.php', data).then(res => {
+        if (res.data == 'success') {
+          navigation.replace('Pemakaian');
+        } else {
+          showMessage({
+            message: 'Maaf Kode Akses Salah !',
+            type: 'danger',
+          });
+        }
+        setLoading(false);
+      });
     }, 1200);
   };
   return (

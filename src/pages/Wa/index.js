@@ -20,7 +20,7 @@ export default function Wa() {
   const [wa, setWa] = useState({});
 
   useEffect(() => {
-    axios.get('https://zavalabs.com/sigadisbekasi/api/wa.php').then(res => {
+    axios.get('https://zavalabs.com/pbs/api/wa.php').then(res => {
       setWa(res.data);
       console.log('data', res.data);
     });

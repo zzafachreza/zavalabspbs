@@ -26,7 +26,7 @@ export default function ListData() {
       console.log(res);
 
       axios
-        .post('https://zavalabs.com/sigadisbekasi/api/notifikasi.php', {
+        .post('https://zavalabs.com/pbs/api/notifikasi.php', {
           id_member: res.id,
         })
         .then(res => {
@@ -42,7 +42,7 @@ export default function ListData() {
 
   const hanldeHapus = id => {
     axios
-      .post('https://zavalabs.com/sigadisbekasi/api/notifikasi_hapus.php', {
+      .post('https://zavalabs.com/pbs/api/notifikasi_hapus.php', {
         id: id,
       })
       .then(res => {

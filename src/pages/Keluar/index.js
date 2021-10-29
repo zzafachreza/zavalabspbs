@@ -153,7 +153,7 @@ export default function Keluar({navigation, route}) {
       setLoading(true);
       console.log('kirim ke server', kirim);
       axios
-        .post('https://zavalabs.com/sigadisbekasi/api/transaksi_add.php', kirim)
+        .post('https://zavalabs.com/pbs/api/transaksi_add.php', kirim)
         .then(x => {
           setLoading(false);
           alert('Absensi Keluar Berhasil Di Kirim');
@@ -164,7 +164,7 @@ export default function Keluar({navigation, route}) {
       setLoading(true);
       console.log('kirim ke server', kirim);
       axios
-        .post('https://zavalabs.com/sigadisbekasi/api/transaksi_add.php', kirim)
+        .post('https://zavalabs.com/pbs/api/transaksi_add.php', kirim)
         .then(x => {
           setLoading(false);
           alert('Absensi Keluar Berhasil Di Kirim');

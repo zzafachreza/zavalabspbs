@@ -150,7 +150,7 @@ export default function Bayar({navigation, route}) {
     console.log('kirim ke server', data);
     setTimeout(() => {
       axios
-        .post('https://zavalabs.com/sigadisbekasi/api/transaksi_add.php', data)
+        .post('https://zavalabs.com/pbs/api/transaksi_add.php', data)
         .then(res => {
           console.log(res);
           setLoading(false);

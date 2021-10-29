@@ -18,13 +18,11 @@ import 'intl';
 import 'intl/locale-data/jsonp/en';
 export default function PemakaianTambah() {
   useEffect(() => {
-    axios
-      .get('https://zavalabs.com/sigadisbekasi/api/barang_kebutuhan.php')
-      .then(res => {
-        console.log(res.data);
-        setData(res.data);
-        // setData(res.data.data);
-      });
+    axios.get('https://zavalabs.com/pbs/api/barang_kebutuhan.php').then(res => {
+      console.log(res.data);
+      setData(res.data);
+      // setData(res.data.data);
+    });
   }, []);
 
   const renderItem = ({item}) => {

@@ -43,13 +43,13 @@ export default function Account({navigation, route}) {
               style={{
                 fontFamily: fonts.secondary[600],
               }}>
-              Nama Lengkap
+              Kode Cabang
             </Text>
             <Text
               style={{
                 fontFamily: fonts.secondary[400],
               }}>
-              {user.nama_lengkap}
+              {user.kode_cabang}
             </Text>
           </View>
           <View
@@ -63,13 +63,13 @@ export default function Account({navigation, route}) {
               style={{
                 fontFamily: fonts.secondary[600],
               }}>
-              Nomor Telepon / HP
+              Nama Cabang
             </Text>
             <Text
               style={{
                 fontFamily: fonts.secondary[400],
               }}>
-              {user.tlp}
+              {user.nama_cabang}
             </Text>
           </View>
           <View
@@ -83,33 +83,13 @@ export default function Account({navigation, route}) {
               style={{
                 fontFamily: fonts.secondary[600],
               }}>
-              NIK
+              Area
             </Text>
             <Text
               style={{
                 fontFamily: fonts.secondary[400],
               }}>
-              {user.nik}
-            </Text>
-          </View>
-          <View
-            style={{
-              marginVertical: 10,
-              padding: 10,
-              backgroundColor: colors.white,
-              borderRadius: 10,
-            }}>
-            <Text
-              style={{
-                fontFamily: fonts.secondary[600],
-              }}>
-              Alamat
-            </Text>
-            <Text
-              style={{
-                fontFamily: fonts.secondary[400],
-              }}>
-              {user.alamat}
+              {user.area}
             </Text>
           </View>
         </View>

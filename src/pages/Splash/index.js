@@ -24,7 +24,7 @@ export default function Splash({navigation}) {
   const scaleText = new Animated.Value(100);
 
   Animated.timing(scaleLogo, {
-    toValue: 0.2,
+    toValue: 2,
     duration: 1000,
   }).start();
 
@@ -76,12 +76,10 @@ export default function Splash({navigation}) {
   }, []);
 
   const getDataCompany = () => {
-    axios
-      .get('https://zavalabs.com/sigadisbekasi/api/company.php')
-      .then(res => {
-        console.log(res.data);
-        storeData('company', res.data);
-      });
+    axios.get('https://zavalabs.com/pbs/api/company.php').then(res => {
+      console.log(res.data);
+      storeData('company', res.data);
+    });
   };
 
   return (

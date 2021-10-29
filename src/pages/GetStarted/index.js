@@ -65,7 +65,7 @@ export default function GetStarted({navigation}) {
           source={require('../../assets/logo.png')}
           style={{
             resizeMode: 'contain',
-            aspectRatio: 0.1,
+            aspectRatio: 2,
           }}
         />
       </View>
@@ -85,12 +85,12 @@ export default function GetStarted({navigation}) {
       <MyButton
         title="LOGIN"
         Icons="log-in-outline"
-        warna={colors.primary}
+        warna={colors.secondary}
         onPress={() => navigation.navigate('Login')}
       />
 
       <MyGap jarak={20} />
-
+      {/* 
       <MyButton
         title="DAFTAR"
         iconColor={colors.white}
@@ -98,7 +98,7 @@ export default function GetStarted({navigation}) {
         colorText={colors.white}
         warna={colors.secondary}
         onPress={() => navigation.navigate('Register')}
-      />
+      /> */}
 
       <Animated.View style={{height: top}} />
     </ImageBackground>

@@ -84,7 +84,7 @@ export default function Register({navigation}) {
       setLoading(true);
       console.log(data);
       axios
-        .post('https://zavalabs.com/sigadisbekasi/api/register.php', data)
+        .post('https://zavalabs.com/pbs/api/register.php', data)
         .then(res => {
           console.log(res);
           let err = res.data.split('#');

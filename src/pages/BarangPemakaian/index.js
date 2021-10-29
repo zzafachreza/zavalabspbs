@@ -103,10 +103,7 @@ export default function BarangPemakaian({navigation, route}) {
     };
     console.log('kirim tok server', kirim);
     axios
-      .post(
-        'https://zavalabs.com/sigadisbekasi/api/barang_pemakaian_add.php',
-        kirim,
-      )
+      .post('https://zavalabs.com/pbs/api/barang_pemakaian_add.php', kirim)
       .then(res => {
         console.log(res);
         navigation.navigate('Pemakaian', {
