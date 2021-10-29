@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "542461015877",
+    "project_id": "zavalabs-pbs",
+    "storage_bucket": "zavalabs-pbs.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542461015877:android:1b01f3ed16d95520c9302c",
+        "android_client_info": {
+          "package_name": "com.zavalabspbs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "542461015877-l3strj9issedg24r3mfjlg3g5mic795r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNdXXisaOkI1vCr7SbirzAxpbdSiNC9GQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "542461015877-l3strj9issedg24r3mfjlg3g5mic795r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
