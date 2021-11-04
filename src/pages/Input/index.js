@@ -23,7 +23,7 @@ export default function Input({route}) {
       console.log(res);
       setUser(res);
     });
-  });
+  }, []);
 
   const myUrl = `https://zavalabs.com/pbs/api/input.php?id_cabang=${user.id_cabang}`;
 

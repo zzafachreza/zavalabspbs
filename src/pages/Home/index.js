@@ -194,7 +194,7 @@ export default function Home({navigation}) {
           <View style={{flex: 1, paddingTop: 15}}>
             <Text
               style={{
-                fontSize: windowWidth / 25,
+                fontSize: windowWidth / 30,
                 color: colors.black,
                 fontFamily: fonts.secondary[400],
               }}>
@@ -202,7 +202,7 @@ export default function Home({navigation}) {
             </Text>
             <Text
               style={{
-                fontSize: windowWidth / 25,
+                fontSize: windowWidth / 30,
                 color: colors.black,
                 fontFamily: fonts.secondary[600],
               }}>
@@ -210,7 +210,7 @@ export default function Home({navigation}) {
             </Text>
             <Text
               style={{
-                fontSize: windowWidth / 25,
+                fontSize: windowWidth / 30,
                 color: colors.primary,
                 fontFamily: fonts.secondary[600],
               }}>

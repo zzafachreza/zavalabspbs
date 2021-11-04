@@ -69,18 +69,39 @@ export default function GetStarted({navigation}) {
           }}
         />
       </View>
-
-      {/* <Text
+      <Text
+        style={{
+          fontFamily: fonts.secondary[800],
+          fontSize: windowWidth / 3,
+          color: colors.primary,
+          marginHorizontal: 20,
+          textAlign: 'left',
+        }}>
+        PBS
+      </Text>
+      <Text
+        style={{
+          fontFamily: fonts.secondary[600],
+          fontSize: windowWidth / 18,
+          color: colors.primary,
+          marginHorizontal: 20,
+          textAlign: 'left',
+          left: 10,
+        }}>
+        Performance Business Strategy
+      </Text>
+      <Text
         style={{
           marginBottom: windowHeight / 5,
           fontFamily: fonts.secondary[600],
-          fontSize: windowWidth / 15,
+          fontSize: windowWidth / 18,
           color: colors.primary,
-          margin: 20,
-          textAlign: 'center',
+          marginHorizontal: 20,
+          textAlign: 'left',
+          left: 10,
         }}>
-        SMP TAHFIDZ ENTREPRENEUR
-      </Text> */}
+        RO Surabaya
+      </Text>
 
       <MyButton
         title="LOGIN"

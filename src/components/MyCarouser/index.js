@@ -23,25 +23,13 @@ export default function MyCarouser() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    // axios.get('https://zavalabs.com/sebatiku/api/slider.php').then(res => {
-    //   setData(res.data);
-    // });
+    axios.get('https://zavalabs.com/pbs/api/slider.php').then(res => {
+      setData(res.data);
+      console.log('slider ya ', res.data);
+    });
   }, []);
 
-  const [data, setData] = useState([
-    {
-      image:
-        'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
-    },
-    {
-      image:
-        'https://images.unsplash.com/photo-1551135049-8a33b5883817?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80',
-    },
-    {
-      image:
-        'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80',
-    },
-  ]);
+  const [data, setData] = useState([]);
 
   const renderCarouselItem = ({item}) => (
     <TouchableOpacity style={styles.cardContainer} key={item.id}>

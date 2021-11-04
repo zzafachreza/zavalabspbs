@@ -1,15 +1,24 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, SafeAreaView, Image} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Image,
+  ScrollView,
+} from 'react-native';
 import {windowWidth, fonts} from '../../utils/fonts';
 import {getData, storeData} from '../../utils/localStorage';
 import {colors} from '../../utils/colors';
-import {MyButton, MyGap} from '../../components';
+import {MyButton, MyGap, MyInput} from '../../components';
 import {Icon} from 'react-native-elements';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useIsFocused} from '@react-navigation/native';
+import axios from 'axios';
 
 export default function Account({navigation, route}) {
   const [user, setUser] = useState({});
+  const [pass, setPass] = useState('');
   const isFocused = useIsFocused();
 
   useEffect(() => {
@@ -27,9 +36,23 @@ export default function Account({navigation, route}) {
     navigation.replace('GetStarted');
   };
 
+  const simpan = () => {
+    axios
+      .post('https://zavalabs.com/pbs/api/pass.php', {
+        password: pass,
+        kode_cabang: user.kode_cabang,
+      })
+      .then(res => {
+        console.log(res);
+        alert(res.data);
+        setPass('');
+
+        // console.log(err[0]);
+      });
+  };
   return (
     <SafeAreaView>
-      <View style={{padding: 10}}>
+      <ScrollView style={{padding: 10}}>
         {/* data detail */}
         <View>
           <View
@@ -94,15 +117,6 @@ export default function Account({navigation, route}) {
           </View>
         </View>
 
-        {/* <MyButton
-          onPress={() => navigation.navigate('EditProfile', user)}
-          title="Edit Profile"
-          colorText={colors.white}
-          iconColor={colors.white}
-          warna={colors.primary}
-          Icons="create-outline"
-        /> */}
-
         <MyGap jarak={20} />
         {/* button */}
 
@@ -112,7 +126,30 @@ export default function Account({navigation, route}) {
           warna={colors.primary}
           Icons="log-out-outline"
         />
-      </View>
+        <MyGap jarak={20} />
+
+        <View
+          style={{
+            padding: 30,
+          }}>
+          <MyInput
+            iconname="key"
+            secureTextEntry
+            value={pass}
+            onChangeText={val => setPass(val)}
+            label="Masukan Password Baru"
+          />
+          <MyGap jarak={10} />
+          <MyButton
+            onPress={simpan}
+            title="Ubah Password"
+            colorText={colors.white}
+            iconColor={colors.white}
+            warna={colors.secondary}
+            Icons="create-outline"
+          />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
