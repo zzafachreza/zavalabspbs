@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -13,10 +13,10 @@ import {
   Linking,
   StatusBar,
 } from 'react-native';
-import {colors} from '../../utils/colors';
-import {fonts} from '../../utils/fonts';
-import {storeData, getData} from '../../utils/localStorage';
-import {Icon} from 'react-native-elements';
+import { colors } from '../../utils/colors';
+import { fonts } from '../../utils/fonts';
+import { storeData, getData } from '../../utils/localStorage';
+import { Icon } from 'react-native-elements';
 import MyCarouser from '../../components/MyCarouser';
 import MyTerbaik from '../../components/MyTerbaik';
 import axios from 'axios';
@@ -27,7 +27,7 @@ import MyTerbaik2 from '../../components/MyTerbaik2';
 import MyTerbaik3 from '../../components/MyTerbaik3';
 import MyDashboard from '../../components/MyDashboard';
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
   const [user, setUser] = useState([]);
   const [token, setToken] = useState('');
   const [tipe, setTipe] = useState('');
@@ -106,11 +106,11 @@ export default function Home({navigation}) {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const ratio = 192 / 108;
-  const _renderItem = ({item, index}) => {
+  const _renderItem = ({ item, index }) => {
     return (
       <Image
         resizeMode="contain"
-        source={{uri: item.image}}
+        source={{ uri: item.image }}
         style={{
           width: windowWidth,
           height: Math.round((windowWidth * 9) / 16),
@@ -119,7 +119,7 @@ export default function Home({navigation}) {
     );
   };
 
-  const DataKategori = ({icon, nama, nama2, onPress}) => {
+  const DataKategori = ({ icon, nama, nama2, onPress }) => {
     return (
       <TouchableOpacity
         onPress={onPress}
@@ -183,15 +183,12 @@ export default function Home({navigation}) {
         <View
           style={{
             marginHorizontal: 10,
-            height: windowHeight / 9,
+            height: windowHeight / 10,
+            marginBottom: 10,
             padding: 10,
-            marginBottom: 20,
-            // backgroundColor: colors.white,
             flexDirection: 'row',
-            // borderBottomLeftRadius: 10,
-            // borderBottomRightRadius: 10,
           }}>
-          <View style={{flex: 1, paddingTop: 15}}>
+          <View style={{ flex: 1, paddingTop: 15 }}>
             <Text
               style={{
                 fontSize: windowWidth / 30,
@@ -226,7 +223,7 @@ export default function Home({navigation}) {
             }}>
             <Image
               source={require('../../assets/logo.png')}
-              style={{width: 120, height: 40, resizeMode: 'stretch'}}
+              style={{ width: 120, height: 40, resizeMode: 'stretch' }}
             />
           </View>
         </View>
@@ -238,13 +235,12 @@ export default function Home({navigation}) {
         <View
           style={{
             padding: 10,
-            marginTop: 20,
           }}>
           <View
             style={{
               flexDirection: 'row',
               justifyContent: 'space-around',
-              marginTop: 15,
+
             }}>
             <DataKategori
               onPress={() => navigation.navigate('Input')}
@@ -316,6 +312,21 @@ export default function Home({navigation}) {
               icon="cube"
               nama="MENU"
               nama2="PRODUK"
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              marginTop: 15,
+            }}>
+            <DataKategori
+              onPress={() =>
+                navigation.navigate('Input2', user)
+              }
+              icon="calendar"
+              nama="DAILY"
+              nama2="ACTIVITY"
             />
           </View>
           {/*  */}

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,16 +7,16 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
-import {windowWidth, fonts} from '../../utils/fonts';
-import {getData, storeData} from '../../utils/localStorage';
-import {colors} from '../../utils/colors';
-import {MyButton, MyGap, MyInput} from '../../components';
-import {Icon} from 'react-native-elements';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {useIsFocused} from '@react-navigation/native';
+import { windowWidth, fonts } from '../../utils/fonts';
+import { getData, storeData } from '../../utils/localStorage';
+import { colors } from '../../utils/colors';
+import { MyButton, MyGap, MyInput } from '../../components';
+import { Icon } from 'react-native-elements';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useIsFocused } from '@react-navigation/native';
 import axios from 'axios';
 
-export default function Account({navigation, route}) {
+export default function Account({ navigation, route }) {
   const [user, setUser] = useState({});
   const [pass, setPass] = useState('');
   const isFocused = useIsFocused();
@@ -52,9 +52,78 @@ export default function Account({navigation, route}) {
   };
   return (
     <SafeAreaView>
-      <ScrollView style={{padding: 10}}>
+      <ScrollView style={{ padding: 10 }}>
         {/* data detail */}
         <View>
+
+          {user.nip !== null && (
+            <>
+              <View
+                style={{
+                  marginVertical: 10,
+                  padding: 10,
+                  backgroundColor: colors.white,
+                  borderRadius: 10,
+                }}>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[600],
+                  }}>
+                  NIP
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[400],
+                  }}>
+                  {user.nip}
+                </Text>
+              </View>
+
+              <View
+                style={{
+                  marginVertical: 10,
+                  padding: 10,
+                  backgroundColor: colors.white,
+                  borderRadius: 10,
+                }}>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[600],
+                  }}>
+                  Nama
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[400],
+                  }}>
+                  {user.nama_pegawai}
+                </Text>
+              </View>
+
+              <View
+                style={{
+                  marginVertical: 10,
+                  padding: 10,
+                  backgroundColor: colors.white,
+                  borderRadius: 10,
+                }}>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[600],
+                  }}>
+                  Jabatan
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[400],
+                  }}>
+                  {user.jabatan}
+                </Text>
+              </View>
+            </>
+          )}
+
+
           <View
             style={{
               marginVertical: 10,

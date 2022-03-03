@@ -33,10 +33,14 @@ import Masuk from './Masuk';
 import Keluar from './Keluar';
 
 import Input from './Input';
+import input2 from './Input2';
+
+
 
 export {
   Splash,
   Input,
+  input2,
   Pilihan,
   Wa,
   Masuk,

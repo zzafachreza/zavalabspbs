@@ -1,9 +1,9 @@
 import React from 'react';
-import {StyleSheet, Text, View, Picker} from 'react-native';
-import {Icon, ListItem, Button} from 'react-native-elements';
-import {colors} from '../../utils/colors';
-import {fonts} from '../../utils/fonts';
-import {TextInput} from 'react-native-gesture-handler';
+import { StyleSheet, Text, View, Picker } from 'react-native';
+import { Icon, ListItem, Button } from 'react-native-elements';
+import { colors } from '../../utils/colors';
+import { fonts } from '../../utils/fonts';
+import { TextInput } from 'react-native-gesture-handler';
 
 export default function MyPicker({
   label,
@@ -54,6 +54,7 @@ export default function MyPicker({
         </Text>
       )}
       <Picker selectedValue={value} onValueChange={onValueChange}>
+        <Picker.Item value="" label="" />
         {data.map(item => {
           return <Picker.Item value={item.value} label={item.label} />;
         })}

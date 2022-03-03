@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,10 +7,10 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import WebView from 'react-native-webview';
-import {colors} from '../../utils/colors';
-import {getData} from '../../utils/localStorage';
+import { colors } from '../../utils/colors';
+import { getData } from '../../utils/localStorage';
 
-export default function Input({route}) {
+export default function Input({ route }) {
   const [user, setUser] = useState({});
   const [visible, setVisible] = useState(true);
 
@@ -23,7 +23,7 @@ export default function Input({route}) {
       console.log(res);
       setUser(res);
     });
-  });
+  }, []);
 
   const myUrl = `https://zavalabs.com/pbs/api/data.php?id_cabang=${user.id_cabang}&page=${route.params.halaman}`;
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -11,78 +11,94 @@ import {
   Switch,
   SafeAreaView,
 } from 'react-native';
-import {colors} from '../../utils/colors';
-import {fonts} from '../../utils/fonts';
-import {MyInput, MyGap, MyButton} from '../../components';
+import { colors } from '../../utils/colors';
+import { fonts } from '../../utils/fonts';
+import { MyInput, MyGap, MyButton, MyPicker } from '../../components';
 import axios from 'axios';
-import {showMessage} from 'react-native-flash-message';
+import { showMessage } from 'react-native-flash-message';
 import LottieView from 'lottie-react-native';
 
-export default function Register({navigation}) {
+export default function Register({ navigation }) {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const [loading, setLoading] = useState(false);
   const [valid, setValid] = useState(false);
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const [area, setArea] = useState([]);
+  const [cabang, setCabang] = useState([]);
+
+  useEffect(() => {
+    getArea();
+  }, [])
+
+
+  const getArea = () => {
+    axios.post('https://zavalabs.com/pbs/api/data_area.php').then(res => {
+      // console.warn(res.data);
+      setArea(res.data);
+    })
+  }
+
+  const getCabang = (x) => {
+
+    axios.post('https://zavalabs.com/pbs/api/data_unit_kerja.php', {
+      area: x
+    }).then(res => {
+      console.warn(res.data);
+      setCabang(res.data);
+    })
+  }
 
   const validate = text => {
     // console.log(text);
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (reg.test(text) === false) {
       // console.log('Email is Not Correct');
-      setData({...data, email: text});
+      setData({ ...data, email: text });
       setValid(false);
       return false;
     } else {
-      setData({...data, email: text});
+      setData({ ...data, email: text });
       setValid(true);
       // console.log('Email is Correct');
     }
   };
 
   const [data, setData] = useState({
-    nama_lengkap: '',
-    nik: '',
-    password: '',
-    telepon: '',
-    alamat: '',
+    nama_pegawai: '',
+    area_pegawai: '',
+    unit_kerja: '',
+    jabatan: '',
+    nip: '',
   });
 
   const simpan = () => {
     if (
-      data.nama_lengkap.length === 0 &&
-      data.nik.length === 0 &&
-      data.password.length === 0 &&
-      data.alamat.length === 0 &&
-      data.telepon.length === 0
+      data.nama_pegawai.length === 0 &&
+      data.nip.length === 0 &&
+      data.area_pegawai.length === 0 &&
+      data.unit_kerja.length === 0 &&
+      data.jabatan.length === 0
     ) {
       showMessage({
         message: 'Maaf Semua Field Harus Di isi !',
       });
-    } else if (data.nama_lengkap.length === 0) {
+    } else if (data.nama_pegawai.length === 0) {
       showMessage({
-        message: 'Maaf Nama Lengkap masih kosong !',
+        message: 'Maaf Nama masih kosong !',
       });
-    } else if (data.alamat.length === 0) {
+    } else if (data.nip.length === 0) {
       showMessage({
-        message: 'Maaf Alamat masih kosong !',
+        message: 'Maaf nip masih kosong !',
       });
-    } else if (data.telepon.length === 0) {
+    } else if (data.jabatan.length === 0) {
       showMessage({
-        message: 'Maaf Telepon masih kosong !',
-      });
-    } else if (data.nik.length === 0) {
-      showMessage({
-        message: 'Maaf NIK masih kosong !',
-      });
-    } else if (data.password.length === 0) {
-      showMessage({
-        message: 'Maaf Password masih kosong !',
+        message: 'Maaf jabatan masih kosong !',
       });
     } else {
       setLoading(true);
-      console.log(data);
+      console.error(data);
       axios
         .post('https://zavalabs.com/pbs/api/register.php', data)
         .then(res => {
@@ -109,18 +125,12 @@ export default function Register({navigation}) {
     }
   };
   return (
-    <ImageBackground
-      source={require('../../assets/back.jpeg')}
+    <SafeAreaView
       style={{
         flex: 1,
         backgroundColor: isEnabled ? colors.black : colors.white,
       }}>
-      {/* <Switch onValueChange={toggleSwitch} value={isEnabled} /> */}
       <ScrollView showsVerticalScrollIndicator={false} style={styles.page}>
-        {/* <Image
-        source={require('../../assets/logooren.png')}
-        style={styles.image}
-      /> */}
         <Text
           style={{
             marginTop: 20,
@@ -139,29 +149,13 @@ export default function Register({navigation}) {
           labelColor={isEnabled ? colors.white : colors.primary}
           colorIcon={isEnabled ? colors.white : colors.primary}
           borderColor={isEnabled ? colors.white : colors.primary}
-          label="Nama Lengkap"
-          iconname="person"
-          value={data.nama_lengkap}
-          onChangeText={value =>
-            setData({
-              ...data,
-              nama_lengkap: value,
-            })
-          }
-        />
-        <MyGap jarak={10} />
-        <MyInput
-          fontColor={isEnabled ? colors.white : colors.black}
-          labelColor={isEnabled ? colors.white : colors.primary}
-          colorIcon={isEnabled ? colors.white : colors.primary}
-          borderColor={isEnabled ? colors.white : colors.primary}
-          label="NPM (Mahasiswa) / NIP (Dosen)"
+          label="NIP"
           iconname="card"
-          value={data.nik}
+          value={data.nip}
           onChangeText={value =>
             setData({
               ...data,
-              nik: value,
+              nip: value,
             })
           }
         />
@@ -171,50 +165,54 @@ export default function Register({navigation}) {
           labelColor={isEnabled ? colors.white : colors.primary}
           colorIcon={isEnabled ? colors.white : colors.primary}
           borderColor={isEnabled ? colors.white : colors.primary}
-          label="Alamat"
-          iconname="map"
-          value={data.alamat}
+          label="Nama "
+          iconname="person"
+          value={data.nama_pegawai}
           onChangeText={value =>
             setData({
               ...data,
-              alamat: value,
+              nama_pegawai: value,
             })
           }
         />
+        <MyGap jarak={10} />
+        <MyPicker iconname="map" label="Area" data={area} onValueChange={val => {
+          setData({
+            ...data,
+            area_pegawai: val
+          });
+
+          getCabang(val);
+
+        }} />
+        <MyGap jarak={10} />
+        <MyPicker iconname="business" label="Unit Kerja" data={cabang} onValueChange={val => {
+
+          setData({
+            ...data,
+            unit_kerja: val
+          });
+
+
+
+        }} />
         <MyGap jarak={10} />
         <MyInput
           fontColor={isEnabled ? colors.white : colors.black}
           labelColor={isEnabled ? colors.white : colors.primary}
           colorIcon={isEnabled ? colors.white : colors.primary}
           borderColor={isEnabled ? colors.white : colors.primary}
-          label="Telepon"
-          iconname="call"
-          keyboardType="number-pad"
-          value={data.telepon}
+          label="Jabatan"
+          iconname="school"
+          value={data.jabatan}
           onChangeText={value =>
             setData({
               ...data,
-              telepon: value,
+              jabatan: value,
             })
           }
         />
-        <MyGap jarak={10} />
-        <MyInput
-          fontColor={isEnabled ? colors.white : colors.black}
-          labelColor={isEnabled ? colors.white : colors.primary}
-          colorIcon={isEnabled ? colors.white : colors.primary}
-          borderColor={isEnabled ? colors.white : colors.primary}
-          label="Password"
-          iconname="key"
-          secureTextEntry
-          value={data.password}
-          onChangeText={value =>
-            setData({
-              ...data,
-              password: value,
-            })
-          }
-        />
+
         <MyGap jarak={20} />
 
         <MyButton
@@ -237,7 +235,7 @@ export default function Register({navigation}) {
           }}
         />
       )}
-    </ImageBackground>
+    </SafeAreaView>
   );
 }
 

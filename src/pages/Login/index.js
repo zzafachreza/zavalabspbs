@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,15 +10,15 @@ import {
   ImageBackground,
   SafeAreaView,
 } from 'react-native';
-import {colors} from '../../utils/colors';
-import {fonts} from '../../utils/fonts';
-import {MyInput, MyGap, MyButton} from '../../components';
+import { colors } from '../../utils/colors';
+import { fonts } from '../../utils/fonts';
+import { MyInput, MyGap, MyButton } from '../../components';
 import LottieView from 'lottie-react-native';
 import axios from 'axios';
-import {storeData, getData} from '../../utils/localStorage';
-import {showMessage} from 'react-native-flash-message';
+import { storeData, getData } from '../../utils/localStorage';
+import { showMessage } from 'react-native-flash-message';
 
-export default function Login({navigation}) {
+export default function Login({ navigation }) {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const [loading, setLoading] = useState(false);
@@ -41,11 +41,11 @@ export default function Login({navigation}) {
   const masuk = () => {
     if (data.nik.length === 0 && data.password.length === 0) {
       showMessage({
-        message: 'Maaf nik dan Password masih kosong !',
+        message: 'Maaf Kode Cabang/NIP dan Password masih kosong !',
       });
     } else if (data.nik.length === 0) {
       showMessage({
-        message: 'Maaf nik masih kosong !',
+        message: 'Maaf Kode Cabang/NIP masih kosong !',
       });
     } else if (data.password.length === 0) {
       showMessage({
@@ -65,14 +65,6 @@ export default function Login({navigation}) {
             });
           } else {
             storeData('user', res.data);
-            axios
-              .post('https://zavalabs.com/pbs/api/update_token.php', {
-                id_member: res.data.id,
-                token: token,
-              })
-              .then(res => {
-                console.log('update token', res);
-              });
 
             navigation.replace('MainApp');
           }
@@ -128,7 +120,7 @@ export default function Login({navigation}) {
 
           <MyGap jarak={20} />
           <MyInput
-            label="Kode Cabang"
+            label="Kode Cabang / NIP"
             iconname="card"
             value={data.nama_lengkap}
             onChangeText={value =>
@@ -167,7 +159,7 @@ export default function Login({navigation}) {
           source={require('../../assets/animation.json')}
           autoPlay
           loop
-          style={{backgroundColor: colors.primary}}
+          style={{ backgroundColor: colors.primary }}
         />
       )}
     </ImageBackground>
