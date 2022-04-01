@@ -54,7 +54,7 @@ export default function MyPicker({
         </Text>
       )}
       <Picker selectedValue={value} onValueChange={onValueChange}>
-        <Picker.Item value="" label="" />
+        {/* <Picker.Item value="" label="" /> */}
         {data.map(item => {
           return <Picker.Item value={item.value} label={item.label} />;
         })}

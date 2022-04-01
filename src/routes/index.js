@@ -48,6 +48,8 @@ import {
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigator } from '../components';
 import { colors } from '../utils/colors';
+import MenuKualitas from '../pages/MenuKualitas';
+import MenuKualitasUpdate from '../pages/MenuKualitasUpdate';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -173,6 +175,60 @@ export default function Router() {
         options={{
           headerShown: false,
         }}
+      />
+
+      <Stack.Screen
+        name="MenuKualitas"
+        component={MenuKualitas}
+        options={({ route, navigation }) => ({
+          title: 'MENU KUALITAS',
+          headerTintColor: 'white',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0, // remove shadow on Android
+          },
+          cardStyleInterpolator: ({ current, layouts }) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        })}
+      />
+
+      <Stack.Screen
+        name="MenuKualitasUpdate"
+        component={MenuKualitasUpdate}
+        options={({ route, navigation }) => ({
+          title: 'UPDATE KUALITAS',
+          headerTintColor: 'white',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0, // remove shadow on Android
+          },
+          cardStyleInterpolator: ({ current, layouts }) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        })}
       />
 
       <Stack.Screen

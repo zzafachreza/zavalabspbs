@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,19 +9,21 @@ import {
   Image,
 } from 'react-native';
 
-import {getData} from '../../utils/localStorage';
+import { getData } from '../../utils/localStorage';
 import axios from 'axios';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {MyButton} from '../../components';
-import {colors} from '../../utils/colors';
-import {TouchableOpacity, Swipeable} from 'react-native-gesture-handler';
-import {fonts, windowWidth} from '../../utils/fonts';
-import {useIsFocused} from '@react-navigation/native';
-import {Icon} from 'react-native-elements';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { MyButton } from '../../components';
+import { colors } from '../../utils/colors';
+import { TouchableOpacity, Swipeable } from 'react-native-gesture-handler';
+import { fonts, windowWidth } from '../../utils/fonts';
+
+import { Icon } from 'react-native-elements';
+
+import { useIsFocused } from '@react-navigation/native';
 import 'intl';
 import 'intl/locale-data/jsonp/en';
 
-export default function Cart({navigation, route}) {
+export default function Cart({ navigation, route }) {
   const [user, setUser] = useState({});
   const [data, setData] = useState([]);
   const isFocused = useIsFocused();
@@ -71,7 +73,14 @@ export default function Cart({navigation, route}) {
     console.log(sub);
   });
 
-  const __renderItem = ({item}) => {
+  const TglZVL = (x) => {
+
+    let tgl = x.split('-');
+    return tgl[0] + '/' + tgl[1] + '/' + tgll[2];
+
+  }
+
+  const __renderItem = ({ item }) => {
     return (
       <Swipeable
         renderRightActions={() => {
@@ -105,7 +114,7 @@ export default function Cart({navigation, route}) {
             elevation: 2,
             backgroundColor: colors.white,
           }}>
-          <View style={{flexDirection: 'row'}}>
+          <View style={{ flexDirection: 'row' }}>
             <Image
               resizeMode="contain"
               style={{
@@ -113,9 +122,9 @@ export default function Cart({navigation, route}) {
                 borderRadius: 20,
                 aspectRatio: 1,
               }}
-              source={{uri: item.foto}}
+              source={{ uri: item.foto }}
             />
-            <View style={{marginLeft: 10, flex: 1, justifyContent: 'center'}}>
+            <View style={{ marginLeft: 10, flex: 1, justifyContent: 'center' }}>
               <Text
                 style={{
                   fontFamily: fonts.secondary[600],
@@ -159,7 +168,7 @@ export default function Cart({navigation, route}) {
         flex: 1,
         // padding: 10,
       }}>
-      <View style={{padding: 10, flex: 1}}>
+      <View style={{ padding: 10, flex: 1 }}>
         <FlatList data={data} renderItem={__renderItem} />
       </View>
       <View

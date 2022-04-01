@@ -328,6 +328,14 @@ export default function Home({ navigation }) {
               nama="DAILY"
               nama2="ACTIVITY"
             />
+            <DataKategori
+              onPress={() =>
+                navigation.navigate('MenuKualitas', user)
+              }
+              icon="aperture"
+              nama="MENU"
+              nama2="KUALITAS"
+            />
           </View>
           {/*  */}
         </View>
